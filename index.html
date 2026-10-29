@@ -280,6 +280,12 @@ legend { font-family: var(--f-sign); font-size: 22px; color: var(--pink); letter
 .sheet-body { background: var(--cream); border-top: 3px solid var(--pink); border-radius: 22px 22px 0 0; max-height: 90vh; overflow-y: auto; padding: 18px max(16px, env(safe-area-inset-right, 0px)) calc(24px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); display: grid; gap: 12px; max-width: 760px; width: 100%; margin: 0 auto; }
 [hidden] { display: none !important; }
 
+.venue-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.vg-item { position: relative; padding: 0; border: 2px solid var(--pink); border-radius: 14px; overflow: hidden; background: var(--cream); cursor: zoom-in; aspect-ratio: 3 / 2; }
+.vg-item.wide { grid-column: 1 / -1; }
+.vg-item img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.vg-item span { position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 10px 7px; font-size: 12.5px; font-weight: 700; color: #fff; text-align: left; background: linear-gradient(transparent, rgba(74, 16, 48, .78)); }
+footer:not(:has(:not([hidden]))) { display: none; }
 footer { text-align: center; padding-block: 8px 28px; color: var(--ink-2); font-size: 13.5px; display: grid; gap: 8px; justify-items: center; }
 footer .script { font-family: var(--f-script); font-size: 28px; color: var(--pink); }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
@@ -376,7 +382,7 @@ footer .script { font-family: var(--f-script); font-size: 28px; color: var(--pin
     <div class="card">
       <span class="eyebrow">Friday night · 8:00 PM</span>
       <h2 class="h-sign">Pub Dinner at The Queens</h2>
-      <p class="muted">The Queens (formerly The Queen's Arms), 12 Silver Street, Chew Magna. Pick your dinner below so Katie can send one order to the pub.</p>
+      <p class="muted">The Queens (formerly The Queen's Arms), 12 Silver Street, Chew Magna. Pick your dinner below so we can send one order to the pub.</p>
       <p class="note" id="pub-note" hidden></p>
       <form id="pub-form" class="card plain" autocomplete="off">
         <div class="field"><label class="lbl" for="pub-name">Your name</label><select id="pub-name" class="guest-select" required></select>
@@ -430,7 +436,7 @@ footer .script { font-family: var(--f-script); font-size: 28px; color: var(--pin
     <div class="card">
       <span class="eyebrow">Breakfasts, picky bits &amp; the Cow-Bite Buffet</span>
       <h2 class="h-sign">Dietary Needs &amp; Food Requests</h2>
-      <p class="muted">Katie's doing the house food shop. Tell her what you can't eat and what you'd love to see.</p>
+      <p class="muted">We're doing a group food shop for the house. Tell us what you can't eat and what you'd love to see.</p>
       <form id="food-form" class="card plain" autocomplete="off">
         <div class="field"><label class="lbl" for="food-name">Your name</label><select id="food-name" class="guest-select" required></select>
           <input type="text" id="food-name-other" placeholder="Type your name" hidden></div>
@@ -452,7 +458,7 @@ footer .script { font-family: var(--f-script); font-size: 28px; color: var(--pin
     <div class="card">
       <span class="eyebrow">During &amp; after the weekend</span>
       <h2 class="h-sign">Drop Your Photos</h2>
-      <p class="muted" id="album-text">Katie will add the shared album link here before the weekend.</p>
+      <p class="muted" id="album-text">The shared album link will be added here before the weekend.</p>
       <div class="row">
         <a class="btn" id="album-btn" href="#" target="_blank" rel="noopener" hidden>Open the shared album</a>
         <button class="btn ghost" type="button" id="qr-btn" hidden>Show QR code</button>
@@ -525,9 +531,9 @@ footer .script { font-family: var(--f-script); font-size: 28px; color: var(--pin
       <span class="eyebrow">Check-in info</span>
       <div class="kv">
         <div><span class="k">Arrive</span><span class="v">From 6:00 PM, Friday 22nd January</span></div>
-        <div><span class="k">Wi-Fi network</span><span class="v copyable"><span id="wifi-name">Katie will add this closer to the time</span></span></div>
-        <div><span class="k">Wi-Fi password</span><span class="v copyable"><span id="wifi-pass">Katie will add this closer to the time</span><button class="copy-btn" data-copy="#wifi-pass" type="button" id="wifi-copy" hidden>Copy</button></span></div>
-        <div><span class="k">Entry / key code</span><span class="v" id="keycode">Katie will add this closer to the time</span></div>
+        <div><span class="k">Wi-Fi network</span><span class="v copyable"><span id="wifi-name">Coming closer to the time</span></span></div>
+        <div><span class="k">Wi-Fi password</span><span class="v copyable"><span id="wifi-pass">Coming closer to the time</span><button class="copy-btn" data-copy="#wifi-pass" type="button" id="wifi-copy" hidden>Copy</button></span></div>
+        <div><span class="k">Entry / key code</span><span class="v" id="keycode">Coming closer to the time</span></div>
         <div id="checkin-notes-wrap" hidden><span class="k">Notes</span><span class="v" id="checkin-notes" style="white-space:pre-line"></span></div>
         <div><span class="k">Check-out</span><span class="v">By 10:00 AM, Sunday 24th January</span></div>
       </div>
@@ -543,12 +549,25 @@ footer .script { font-family: var(--f-script); font-size: 28px; color: var(--pin
         <div><span class="k">The Queens</span><span class="v copyable"><span>12 Silver Street, Chew Magna, BS40 8RQ · 01275 627 647</span><button class="copy-btn" data-copy-text="01275627647" type="button">Copy</button></span></div>
       </div>
     </div>
+    <div class="card">
+      <span class="eyebrow">Sneak Peek</span>
+      <h2 class="h-sign">Inside Oak Barn</h2>
+      <div class="venue-gallery">
+        <button class="vg-item wide" type="button" data-zoom="https://static.wixstatic.com/media/cd4580_d15cb847b0ba48ff8b51a1fc2f6a9aec~mv2.jpg/v1/fill/w_1400,h_934,q_85,enc_jpg/cd4580_d15cb847b0ba48ff8b51a1fc2f6a9aec~mv2.jpg" data-alt="Oak Barn from the outside"><img src="https://static.wixstatic.com/media/cd4580_d15cb847b0ba48ff8b51a1fc2f6a9aec~mv2.jpg/v1/fill/w_720,h_480,q_85,enc_jpg/cd4580_d15cb847b0ba48ff8b51a1fc2f6a9aec~mv2.jpg" alt="Oak Barn from the outside" loading="lazy"><span>Oak Barn from the outside</span></button>
+        <button class="vg-item" type="button" data-zoom="https://static.wixstatic.com/media/cd4580_1a297967ebca4809993be6fd9d8d2b08~mv2.jpg/v1/fill/w_1400,h_934,q_85,enc_jpg/cd4580_1a297967ebca4809993be6fd9d8d2b08~mv2.jpg" data-alt="The big beamed living space"><img src="https://static.wixstatic.com/media/cd4580_1a297967ebca4809993be6fd9d8d2b08~mv2.jpg/v1/fill/w_720,h_480,q_85,enc_jpg/cd4580_1a297967ebca4809993be6fd9d8d2b08~mv2.jpg" alt="The big beamed living space" loading="lazy"><span>The big beamed living space</span></button>
+        <button class="vg-item" type="button" data-zoom="https://static.wixstatic.com/media/cd4580_c4dfc1f01c5a4123b27e41a064860b4f~mv2.jpg/v1/fill/w_1400,h_934,q_85,enc_jpg/cd4580_c4dfc1f01c5a4123b27e41a064860b4f~mv2.jpg" data-alt="Cosy log burner corner"><img src="https://static.wixstatic.com/media/cd4580_c4dfc1f01c5a4123b27e41a064860b4f~mv2.jpg/v1/fill/w_720,h_480,q_85,enc_jpg/cd4580_c4dfc1f01c5a4123b27e41a064860b4f~mv2.jpg" alt="Cosy log burner corner" loading="lazy"><span>Cosy log burner corner</span></button>
+        <button class="vg-item wide" type="button" data-zoom="https://static.wixstatic.com/media/cd4580_71c5e86cfa1c4c99a9ab8228dd8ef7c8~mv2.jpg/v1/fill/w_1400,h_934,q_85,enc_jpg/cd4580_71c5e86cfa1c4c99a9ab8228dd8ef7c8~mv2.jpg" data-alt="Lounge under the oak beams"><img src="https://static.wixstatic.com/media/cd4580_71c5e86cfa1c4c99a9ab8228dd8ef7c8~mv2.jpg/v1/fill/w_720,h_480,q_85,enc_jpg/cd4580_71c5e86cfa1c4c99a9ab8228dd8ef7c8~mv2.jpg" alt="Lounge under the oak beams" loading="lazy"><span>Lounge under the oak beams</span></button>
+        <button class="vg-item" type="button" data-zoom="https://static.wixstatic.com/media/cd4580_c01a028c3e2146f3b18b17c69bd97dfa~mv2.jpg/v1/fill/w_1400,h_934,q_85,enc_jpg/cd4580_c01a028c3e2146f3b18b17c69bd97dfa~mv2.jpg" data-alt="Kitchen and dining"><img src="https://static.wixstatic.com/media/cd4580_c01a028c3e2146f3b18b17c69bd97dfa~mv2.jpg/v1/fill/w_720,h_480,q_85,enc_jpg/cd4580_c01a028c3e2146f3b18b17c69bd97dfa~mv2.jpg" alt="Kitchen and dining" loading="lazy"><span>Kitchen and dining</span></button>
+        <button class="vg-item" type="button" data-zoom="https://static.wixstatic.com/media/cd4580_60a1beea327a4080b16e950758891dbf~mv2.png/v1/fill/w_1400,h_934,q_85,enc_jpg/cd4580_60a1beea327a4080b16e950758891dbf~mv2.jpg" data-alt="One of the bedrooms"><img src="https://static.wixstatic.com/media/cd4580_60a1beea327a4080b16e950758891dbf~mv2.png/v1/fill/w_720,h_480,q_85,enc_jpg/cd4580_60a1beea327a4080b16e950758891dbf~mv2.jpg" alt="One of the bedrooms" loading="lazy"><span>One of the bedrooms</span></button>
+        <button class="vg-item wide" type="button" data-zoom="https://static.wixstatic.com/media/cd4580_226d4f410d654deb84b8590006e51d29~mv2.jpg/v1/fill/w_1400,h_934,q_85,enc_jpg/cd4580_226d4f410d654deb84b8590006e51d29~mv2.jpg" data-alt="Sunny patio"><img src="https://static.wixstatic.com/media/cd4580_226d4f410d654deb84b8590006e51d29~mv2.jpg/v1/fill/w_720,h_480,q_85,enc_jpg/cd4580_226d4f410d654deb84b8590006e51d29~mv2.jpg" alt="Sunny patio" loading="lazy"><span>Sunny patio</span></button>
+        <button class="vg-item" type="button" data-zoom="https://static.wixstatic.com/media/cd4580_925c367dcfed407cb72f841a3e2b2975~mv2.jpg/v1/fill/w_1400,h_934,q_85,enc_jpg/cd4580_925c367dcfed407cb72f841a3e2b2975~mv2.jpg" data-alt="The garden"><img src="https://static.wixstatic.com/media/cd4580_925c367dcfed407cb72f841a3e2b2975~mv2.jpg/v1/fill/w_720,h_480,q_85,enc_jpg/cd4580_925c367dcfed407cb72f841a3e2b2975~mv2.jpg" alt="The garden" loading="lazy"><span>The garden</span></button>
+      </div>
+      <p class="muted">Tap a photo to make it bigger. Photos from <a href="https://www.oakbarnholiday.com/bedroom-layout-and-photos" target="_blank" rel="noopener">oakbarnholiday.com</a>.</p>
+    </div>
   </section>
 </main>
 
 <footer>
-  <span class="script">Yeehaw!</span>
-  <span>Made with love for Vic by Katie &amp; the girls</span>
   <button class="btn sm ghost" type="button" id="org-btn" hidden>Organiser settings</button>
 </footer>
 
@@ -610,7 +629,7 @@ footer .script { font-family: var(--f-script); font-size: 28px; color: var(--pin
     groupChatUrl: "", spotifyUrl: "", albumUrl: "",
     activity: "Afternoon activity (to be revealed)",
     wifiName: "", wifiPass: "", keycode: "", checkin: "", preorderDeadline: "",
-    menuNote: "These are example dishes for now. Katie will swap in the real menu from The Queens.",
+    menuNote: "These are example dishes for now. The real menu from The Queens is coming soon.",
     starters: "Soup of the day, sourdough\nSalt & pepper squid, garlic aioli\nWhipped goat's cheese, beetroot, walnuts (v)\nGarlic & rosemary flatbread to share (v)",
     mains: "Beer-battered fish & chips, mushy peas\nThe Queens beef burger, cheddar, fries\nChicken, leek & ham pie, mash, greens\nWild mushroom risotto, parmesan (v)\nSirloin steak, peppercorn sauce, chips",
     desserts: "Sticky toffee pudding, clotted cream\nChocolate brownie, vanilla ice cream\nWest Country cheese board\nSorbet selection (vg)",
@@ -791,7 +810,7 @@ footer .script { font-family: var(--f-script); font-size: 28px; color: var(--pin
   function status(id, msg, kind) { const el = $("#" + id); el.textContent = msg; el.className = "status " + (kind || ""); }
   function showFallback(boxId, text) {
     const box = $("#" + boxId);
-    box.innerHTML = `<div class="fallback"><b>This phone can't save to the shared list.</b><span class="muted small">Copy your answers and paste them into the group chat for Katie instead.</span><textarea readonly>${esc(text)}</textarea><div class="row"><button class="btn sm" type="button">Copy my answers</button></div></div>`;
+    box.innerHTML = `<div class="fallback"><b>This phone can't save to the shared list.</b><span class="muted small">Copy your answers and paste them into the group chat instead.</span><textarea readonly>${esc(text)}</textarea><div class="row"><button class="btn sm" type="button">Copy my answers</button></div></div>`;
     const ta = $("textarea", box);
     $("button", box).addEventListener("click", async () => { if (!(await copyText(text))) { ta.focus(); ta.select(); } });
   }
@@ -926,7 +945,7 @@ footer .script { font-family: var(--f-script); font-size: 28px; color: var(--pin
     const needs = $$("#food-diets input:checked").map(i => i.value);
     const body = { guest: name, needs, allergies: $("#food-allergies").value.trim(), requests: $("#food-requests").value.trim(), updatedAt: new Date().toISOString() };
     const text = `🍕 Food info – ${name}\nDiet: ${needs.join(", ") || "-"}\nAllergies: ${body.allergies || "-"}\nRequests: ${body.requests || "-"}`;
-    await saveDoc("dietary/" + slug(name), body, { statusId: "food-status", fallbackId: "food-fallback", fallbackText: text, okMsg: "Saved! Katie's got you covered." });
+    await saveDoc("dietary/" + slug(name), body, { statusId: "food-status", fallbackId: "food-fallback", fallbackText: text, okMsg: "Saved! We've got you covered." });
   });
   function renderFood() {
     const rows = data.dietary.slice().sort((a, b) => a.guest.localeCompare(b.guest));
@@ -942,7 +961,7 @@ footer .script { font-family: var(--f-script); font-size: 28px; color: var(--pin
     const url = config.albumUrl;
     $("#album-btn").hidden = !url; $("#qr-btn").hidden = !url;
     if (url) { $("#album-btn").href = url; $("#album-text").textContent = "Add your pics to the shared album. Show the QR code to anyone who wants to join."; }
-    else { $("#album-text").textContent = "Katie will add the shared album link here before the weekend."; $("#qr").hidden = true; }
+    else { $("#album-text").textContent = "The shared album link will be added here before the weekend."; $("#qr").hidden = true; }
   }
   $("#qr-btn").addEventListener("click", () => {
     const box = $("#qr"); const url = config.albumUrl;
@@ -1001,11 +1020,11 @@ footer .script { font-family: var(--f-script); font-size: 28px; color: var(--pin
   function renderLinks() {
     const chat = $("#chat-btn");
     if (config.groupChatUrl) { chat.href = config.groupChatUrl; chat.removeAttribute("data-nolink"); }
-    else { chat.href = "#"; chat.dataset.nolink = "Katie will add the group chat link soon"; }
+    else { chat.href = "#"; chat.dataset.nolink = "The group chat link is coming soon"; }
     const sp = config.spotifyUrl || "https://open.spotify.com/search/country%20barbie%20rodeo/playlists";
     $("#spotify-btn").href = sp; $("#spotify-btn-2").href = sp;
     $("#taxis").innerHTML = lines("taxis").map(l => { const [n, num] = l.split("|").map(s => s.trim()); return `<li><b>${esc(n)}</b><span class="copyable"><span>${esc(num || "")}</span>${num ? `<button class="copy-btn" type="button" data-copy-text="${esc(num.replace(/\s/g, ""))}">Copy</button>` : ""}</span></li>`; }).join("");
-    const later = "Katie will add this closer to the time";
+    const later = "Coming closer to the time";
     $("#wifi-name").textContent = config.wifiName || later;
     $("#wifi-pass").textContent = config.wifiPass || later;
     $("#wifi-copy").hidden = !config.wifiPass;
