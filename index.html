@@ -1,0 +1,1078 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex"></head><body>
+<title>Vic's Last Rodeo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800&family=Yellowtail&display=swap">
+<style>
+/* Layout: sticky western "sign" header with scrolling tab chips; one column of cream cards on a blush-pink sky, sand-orange ground band at the foot. Single deliberate pink theme. */
+:root {
+  --sky: #FFE4EF;
+  --sky-2: #FFD3E5;
+  --cream: #FFF8E7;
+  --pink: #E0115F;
+  --pink-soft: #FF69B4;
+  --coral: #FF7F50;
+  --sand: #EFA855;
+  --tan: #C98A3E;
+  --ink: #4A1030;
+  --ink-2: #7A3A5A;
+  --line: #F5B3CF;
+  --ok: #1F7A4D;
+  --f-script: "Yellowtail", "Brush Script MT", cursive;
+  --f-sign: "Bebas Neue", "Arial Narrow", Impact, sans-serif;
+  --f-body: "Nunito", "Segoe UI", system-ui, sans-serif;
+  --r: 18px;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--sky);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--pink); }
+a { color: var(--pink); font-weight: 700; }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--coral); outline-offset: 2px; border-radius: 6px; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+p { margin: 0; }
+
+/* ---------- Header + tabs ---------- */
+.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: var(--pink);
+  color: var(--cream);
+  box-shadow: 0 3px 0 var(--ink);
+}
+.top-inner {
+  max-width: 880px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 8px 0;
+}
+.brand { display: flex; align-items: baseline; gap: 8px; justify-content: space-between; }
+.brand .name { font-family: var(--f-script); font-size: 26px; line-height: 1.1; }
+.brand .when { font-family: var(--f-sign); font-size: 16px; letter-spacing: .08em; opacity: .92; white-space: nowrap; }
+.tabs {
+  display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none;
+  padding-block: 8px 10px; margin-inline: -4px; padding-inline: 4px;
+  scroll-snap-type: x proximity;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  flex: none; scroll-snap-align: start;
+  border: 2px solid var(--cream); background: transparent; color: var(--cream);
+  font-family: var(--f-sign); font-size: 17px; letter-spacing: .06em;
+  padding: 5px 13px 3px; border-radius: 999px; cursor: pointer; white-space: nowrap;
+}
+.tab[aria-selected="true"] { background: var(--cream); color: var(--pink); }
+
+/* ---------- Page ---------- */
+main {
+  max-width: 880px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 18px 40px;
+}
+.panel { display: grid; gap: 16px; }
+.panel > * { min-width: 0; }
+.card {
+  background: var(--cream);
+  border: 2px solid var(--pink);
+  border-radius: var(--r);
+  padding: 18px;
+  display: grid; gap: 12px;
+  min-width: 0;
+}
+.card.plain { background: transparent; border: none; padding: 0; }
+.eyebrow { font-family: var(--f-sign); letter-spacing: .14em; color: var(--coral); font-size: 17px; line-height: 1; }
+.h-sign { font-family: var(--f-sign); font-size: 34px; line-height: .95; letter-spacing: .03em; color: var(--pink); }
+.h-script { font-family: var(--f-script); font-size: 34px; line-height: 1.1; color: var(--pink); font-weight: 400; }
+.muted { color: var(--ink-2); font-size: 14.5px; }
+.small { font-size: 13.5px; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.grid-2 { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.grid-2 > * { min-width: 0; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  border: 2px solid var(--ink); background: var(--pink); color: var(--cream);
+  font-family: var(--f-sign); font-size: 19px; letter-spacing: .06em; line-height: 1;
+  padding: 11px 16px 9px; border-radius: 999px; cursor: pointer; text-decoration: none;
+  box-shadow: 0 3px 0 var(--ink); transition: transform .08s, box-shadow .08s;
+  min-height: 44px;
+}
+.btn:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--ink); }
+.btn.alt { background: var(--sand); color: var(--ink); }
+.btn.ghost { background: var(--cream); color: var(--pink); }
+.btn.sm { font-size: 16px; padding: 7px 12px 5px; min-height: 36px; box-shadow: 0 2px 0 var(--ink); }
+.btn[disabled] { opacity: .55; cursor: progress; }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative; overflow: hidden;
+  background: linear-gradient(180deg, var(--sky-2) 0 calc(100% - 22px), var(--sand) calc(100% - 22px) 100%);
+  padding-bottom: 40px !important;
+  border: 2px solid var(--pink); border-radius: var(--r);
+  padding: 22px 18px 20px;
+  display: grid; gap: 16px; grid-template-columns: 1fr;
+}
+.hero .stars { position: absolute; top: 12px; font-family: var(--f-sign); color: var(--pink); font-size: 22px; letter-spacing: .3em; }
+.hero .stars.l { left: 16px; } .hero .stars.r { right: 12px; }
+.hero-text { display: grid; gap: 6px; justify-items: center; text-align: center; padding-top: 14px; }
+.hero .kicker { font-family: var(--f-sign); color: var(--coral); font-size: 22px; letter-spacing: .12em; }
+.hero h1 { font-family: var(--f-script); font-weight: 400; color: var(--pink); font-size: clamp(56px, 16vw, 92px); line-height: .9; transform: rotate(-4deg); text-shadow: 3px 3px 0 var(--cream); }
+.hero .sub { font-family: var(--f-sign); color: var(--ink); font-size: 22px; letter-spacing: .1em; margin-top: 6px; }
+.arch {
+  justify-self: center; width: min(250px, 72%); aspect-ratio: 3 / 4; max-width: 100%;
+  border-radius: 999px 999px 18px 18px; overflow: hidden;
+  border: 4px solid var(--cream); outline: 2px solid var(--pink); box-shadow: 0 6px 0 var(--pink);
+  background: var(--pink-soft);
+}
+.arch img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; display: block; }
+.hero .facts { display: grid; gap: 4px; justify-items: center; text-align: center; }
+.hero .facts b { font-family: var(--f-sign); font-size: 24px; letter-spacing: .06em; font-weight: 400; color: var(--ink); }
+.hero .facts span { font-weight: 700; color: var(--ink); }
+.hero .actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.countdown { display: flex; justify-content: center; gap: 8px; }
+.countdown div { background: var(--cream); border: 2px solid var(--ink); border-radius: 12px; padding: 4px 10px 2px; text-align: center; min-width: 62px; }
+.countdown b { display: block; font-family: var(--f-sign); font-size: 30px; line-height: 1; color: var(--pink); font-variant-numeric: tabular-nums; font-weight: 400; }
+.countdown small { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 800; color: var(--ink-2); }
+@media (min-width: 720px) {
+  .hero { grid-template-columns: 1fr 260px; align-items: center; padding: 30px; }
+  .hero-text { justify-items: start; text-align: left; }
+  .hero .facts { justify-items: start; text-align: left; }
+  .hero .actions { justify-content: flex-start; }
+  .countdown { justify-content: flex-start; }
+  .arch { grid-column: 2; grid-row: 1 / span 2; width: 100%; }
+}
+
+/* ---------- Itinerary ---------- */
+.days { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.day-btn {
+  border: 2px solid var(--pink); background: var(--cream); color: var(--pink); border-radius: 14px;
+  padding: 8px 4px 6px; cursor: pointer; display: grid; gap: 0; line-height: 1.05;
+}
+.day-btn b { font-family: var(--f-sign); font-size: 22px; letter-spacing: .05em; font-weight: 400; }
+.day-btn span { font-size: 12px; font-weight: 800; letter-spacing: .04em; }
+.day-btn[aria-selected="true"] { background: var(--pink); color: var(--cream); box-shadow: 0 3px 0 var(--ink); }
+.day-title { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.ev { display: grid; grid-template-columns: 76px 1fr; gap: 12px; position: relative; padding-bottom: 16px; }
+.ev:last-child { padding-bottom: 0; }
+.ev::before { content: ""; position: absolute; left: 87px; top: 10px; bottom: -6px; border-left: 2px dashed var(--line); }
+.ev:last-child::before { display: none; }
+.ev .t { font-family: var(--f-sign); font-size: 21px; color: var(--coral); line-height: 1.1; text-align: right; padding-top: 1px; letter-spacing: .02em; }
+.ev .body { position: relative; padding-left: 18px; display: grid; gap: 2px; min-width: 0; }
+.ev .body::before { content: ""; position: absolute; left: -7px; top: 5px; width: 13px; height: 13px; border-radius: 50%; background: var(--cream); border: 3px solid var(--pink); }
+.ev .what { font-weight: 800; font-size: 16.5px; line-height: 1.3; }
+.ev .detail { color: var(--ink-2); font-size: 14.5px; }
+.ev.past { opacity: .55; }
+.ev.now .body::before { background: var(--pink); box-shadow: 0 0 0 4px var(--line); }
+.pill { display: inline-block; font-family: var(--f-sign); font-size: 14px; letter-spacing: .08em; padding: 3px 8px 1px; border-radius: 999px; background: var(--pink); color: var(--cream); vertical-align: 2px; margin-left: 4px; }
+.pill.coral { background: var(--coral); color: var(--ink); }
+.pill.tan { background: var(--sand); color: var(--ink); }
+
+/* ---------- Rooms ---------- */
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.stat { background: var(--pink); color: var(--cream); border-radius: 14px; padding: 10px 6px 8px; text-align: center; border: 2px solid var(--ink); }
+.stat b { display: block; font-family: var(--f-sign); font-size: 38px; line-height: .9; font-weight: 400; }
+.stat span { font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.amen { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+.amen li { display: flex; gap: 10px; align-items: flex-start; font-weight: 600; }
+.amen li::before { content: "★"; color: var(--coral); flex: none; }
+.rooms { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.room { background: var(--cream); border: 2px solid var(--pink); border-radius: var(--r); overflow: hidden; display: grid; grid-template-rows: auto 1fr; }
+.room button.sign { border: 0; padding: 0; background: var(--sky-2); cursor: zoom-in; display: block; width: 100%; }
+.room img { display: block; width: 100%; aspect-ratio: 1100 / 781; object-fit: cover; }
+.room .info { padding: 12px 14px 14px; display: grid; gap: 4px; align-content: start; }
+.room .rn { font-family: var(--f-sign); font-size: 26px; color: var(--pink); line-height: 1; letter-spacing: .03em; }
+.room .who { font-weight: 800; }
+.room .tag { font-style: italic; color: var(--ink-2); font-size: 14.5px; }
+.room.me { outline: 4px solid var(--coral); }
+.plan-btn { border: 2px solid var(--pink); border-radius: 14px; overflow: hidden; padding: 0; background: var(--cream); cursor: zoom-in; display: block; width: 100%; }
+.plan-btn img { display: block; width: 100%; }
+.find-me { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.find-me select { flex: 1 1 180px; }
+
+/* ---------- Forms ---------- */
+label.lbl, .lbl { font-weight: 800; font-size: 14.5px; display: block; margin-bottom: 4px; }
+.field { display: grid; gap: 4px; min-width: 0; }
+input[type="text"], input[type="url"], select, textarea {
+  width: 100%; min-width: 0; border: 2px solid var(--line); background: #FFFFFF; border-radius: 12px;
+  padding: 10px 12px; font-size: 16px; color: var(--ink);
+}
+input:focus, select:focus, textarea:focus { border-color: var(--pink); outline: none; box-shadow: 0 0 0 3px var(--sky-2); }
+textarea { min-height: 84px; resize: vertical; }
+fieldset { border: 0; margin: 0; padding: 0; min-width: 0; display: grid; gap: 6px; }
+legend { font-family: var(--f-sign); font-size: 22px; color: var(--pink); letter-spacing: .05em; padding: 0; margin-bottom: 2px; }
+.choices { display: grid; gap: 6px; }
+.choice { position: relative; }
+.choice input { position: absolute; opacity: 0; pointer-events: none; }
+.choice span {
+  display: block; border: 2px solid var(--line); background: #FFFFFF; border-radius: 12px; padding: 10px 12px 10px 40px;
+  cursor: pointer; font-weight: 600; position: relative; line-height: 1.35;
+}
+.choice span::before { content: ""; position: absolute; left: 12px; top: 50%; translate: 0 -50%; width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--pink); background: #FFFFFF; }
+.choice input[type="checkbox"] + span::before { border-radius: 5px; }
+.choice input:checked + span { border-color: var(--pink); background: var(--sky); }
+.choice input:checked + span::before { background: var(--pink); box-shadow: inset 0 0 0 3px #FFFFFF; }
+.choice input:focus-visible + span { outline: 3px solid var(--coral); outline-offset: 2px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips .choice span { padding: 8px 12px 8px 34px; border-radius: 999px; font-size: 15px; }
+.chips .choice span::before { left: 10px; width: 16px; height: 16px; }
+.status { font-weight: 700; font-size: 14.5px; }
+.status.ok { color: var(--ok); }
+.status.err { color: var(--pink); }
+.fallback { background: var(--sky); border: 2px dashed var(--pink); border-radius: 14px; padding: 12px; display: grid; gap: 8px; }
+.fallback textarea { min-height: 120px; font-size: 14px; background: var(--cream); }
+
+/* lists of responses */
+.list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
+.list li { padding: 10px 0; border-top: 1px dashed var(--line); display: grid; gap: 2px; min-width: 0; }
+.list li:first-child { border-top: 0; }
+.list .who { font-weight: 800; }
+.list .meta { color: var(--ink-2); font-size: 13.5px; }
+.list .x { justify-self: start; background: none; border: 0; color: var(--pink); font-weight: 700; font-size: 13px; padding: 0; cursor: pointer; text-decoration: underline; }
+.song { display: grid; grid-template-columns: 34px 1fr; gap: 10px; align-items: center; }
+.song .n { font-family: var(--f-sign); font-size: 22px; color: var(--coral); text-align: right; font-variant-numeric: tabular-nums; }
+.song b { font-weight: 800; }
+.tally { overflow-x: auto; }
+.tally table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+.tally th, .tally td { text-align: left; padding: 6px 8px; border-bottom: 1px dashed var(--line); vertical-align: top; }
+.tally th { font-family: var(--f-sign); font-weight: 400; letter-spacing: .06em; color: var(--pink); font-size: 17px; }
+.tally td.num { text-align: right; font-variant-numeric: tabular-nums; font-weight: 800; }
+.progress { height: 14px; background: var(--sky-2); border-radius: 999px; overflow: hidden; border: 2px solid var(--ink); }
+.progress i { display: block; height: 100%; width: 0; background: repeating-linear-gradient(45deg, var(--pink) 0 10px, var(--pink-soft) 10px 20px); transition: width .3s; }
+.empty { color: var(--ink-2); font-style: italic; }
+.note { background: var(--sand); color: var(--ink); border-radius: 14px; padding: 10px 14px; font-weight: 700; border: 2px solid var(--ink); }
+
+/* photos */
+.gallery { display: grid; gap: 6px; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
+.gallery button { border: 0; padding: 0; background: var(--sky-2); border-radius: 10px; overflow: hidden; aspect-ratio: 1; cursor: zoom-in; max-width: 100%; }
+.gallery img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.qr { background: var(--cream); padding: 10px; border-radius: 12px; border: 2px solid var(--pink); justify-self: center; }
+.qr img, .qr canvas { display: block; }
+
+/* venue */
+.kv { display: grid; gap: 10px; }
+.kv > div { display: grid; gap: 2px; }
+.kv dt, .kv .k { font-family: var(--f-sign); color: var(--coral); letter-spacing: .08em; font-size: 16px; }
+.kv .v { font-weight: 700; overflow-wrap: anywhere; }
+.copyable { display: inline-flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.copy-btn { border: 2px solid var(--pink); background: var(--cream); color: var(--pink); border-radius: 999px; font-size: 12.5px; font-weight: 800; padding: 3px 10px; cursor: pointer; }
+.taxis { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+.taxis li { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; border-bottom: 1px dashed var(--line); padding-bottom: 6px; }
+.taxis li b { font-weight: 800; }
+
+/* lightbox + toast + sheet */
+.lightbox { position: fixed; inset: 0; z-index: 20; background: rgba(74, 16, 48, .88); display: grid; place-items: center; padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+.lightbox img { max-width: 100%; max-height: 82vh; border-radius: 12px; border: 3px solid var(--cream); }
+.lightbox .close { position: absolute; top: calc(12px + env(safe-area-inset-top, 0px)); right: calc(12px + env(safe-area-inset-right, 0px)); }
+.toast { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); translate: -50% 0; z-index: 30; background: var(--ink); color: var(--cream); padding: 10px 16px; border-radius: 999px; font-weight: 700; max-width: calc(100% - 32px); text-align: center; }
+.sheet { position: fixed; inset: 0; z-index: 25; background: rgba(74, 16, 48, .6); display: grid; align-items: end; }
+.sheet-body { background: var(--cream); border-top: 3px solid var(--pink); border-radius: 22px 22px 0 0; max-height: 90vh; overflow-y: auto; padding: 18px max(16px, env(safe-area-inset-right, 0px)) calc(24px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); display: grid; gap: 12px; max-width: 760px; width: 100%; margin: 0 auto; }
+
+footer { text-align: center; padding-block: 8px 28px; color: var(--ink-2); font-size: 13.5px; display: grid; gap: 8px; justify-items: center; }
+footer .script { font-family: var(--f-script); font-size: 28px; color: var(--pink); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand"><span class="name">Vic's Last Rodeo</span><span class="when">22–24 JAN 2027</span></div>
+    <nav class="tabs" role="tablist" aria-label="Sections" id="tabs">
+      <button class="tab" role="tab" data-tab="itinerary">Itinerary</button>
+      <button class="tab" role="tab" data-tab="rooms">Accommodation</button>
+      <button class="tab" role="tab" data-tab="pub">Pub Pre-Order</button>
+      <button class="tab" role="tab" data-tab="playlist">Playlist</button>
+      <button class="tab" role="tab" data-tab="food">Dietary &amp; Food</button>
+      <button class="tab" role="tab" data-tab="photos">Photos</button>
+      <button class="tab" role="tab" data-tab="bring">What to Bring</button>
+      <button class="tab" role="tab" data-tab="venue">Venue &amp; Travel</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- ============ ITINERARY ============ -->
+  <section class="panel" id="tab-itinerary" data-panel="itinerary">
+    <div class="hero">
+      <span class="stars l" aria-hidden="true">★★★</span><span class="stars r" aria-hidden="true">★★★</span>
+      <div class="hero-text">
+        <span class="kicker">Victoria's Hen Weekend</span>
+        <h1>Vic's Last Rodeo</h1>
+      </div>
+      <div class="arch"><img src="img/vic.jpg" alt="Vic in a pink cowgirl hat and fringed pink outfit"></div>
+      <div class="hero-text" style="padding-top:0; gap:14px">
+        <div class="facts">
+          <b>Fri 22nd – Sun 24th January 2027</b>
+          <span>Oak Barn, Chew Magna, Somerset</span>
+        </div>
+        <div class="countdown" id="countdown" aria-live="polite"></div>
+        <div class="actions">
+          <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Oak+Barn+Old+North+Chew+Farm+Norton+Lane+Chew+Magna+BS40+8RW" target="_blank" rel="noopener">Directions</a>
+          <a class="btn alt" id="chat-btn" href="#" target="_blank" rel="noopener">Group Chat</a>
+          <a class="btn ghost" id="spotify-btn" href="#" target="_blank" rel="noopener">Rodeo Barbie Playlist</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="days" role="tablist" aria-label="Day" id="days"></div>
+      <div class="day-title"><h2 class="h-sign" id="day-name"></h2><span class="muted" id="day-sub"></span></div>
+      <ol class="timeline" id="timeline"></ol>
+    </div>
+  </section>
+
+  <!-- ============ ACCOMMODATION ============ -->
+  <section class="panel" id="tab-rooms" data-panel="rooms" hidden>
+    <div class="card">
+      <span class="eyebrow">Our home for the weekend</span>
+      <h2 class="h-sign">Oak Barn at Old North Chew Farm</h2>
+      <div class="stats">
+        <div class="stat"><b>16</b><span>Sleeps</span></div>
+        <div class="stat"><b>5</b><span>Bedrooms</span></div>
+        <div class="stat"><b>3</b><span>Bathrooms</span></div>
+      </div>
+      <ul class="amen">
+        <li>Fast free Wi-Fi</li>
+        <li>Underfloor heating</li>
+        <li>Log burner (logs provided)</li>
+        <li>Open-plan lounge &amp; kitchen</li>
+        <li>Private country garden with patio &amp; lawn</li>
+        <li>Courtyard parking</li>
+        <li>Smart TV with sound system</li>
+        <li>8-minute walk to Chew Magna village pubs &amp; cafés</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <span class="eyebrow">Who's sleeping where</span>
+      <h2 class="h-sign">The Pink Rodeo Rooms</h2>
+      <div class="find-me">
+        <label for="find-me" class="muted" style="font-weight:800">Find my room</label>
+        <select id="find-me"></select>
+      </div>
+    </div>
+    <div class="rooms" id="rooms"></div>
+
+    <div class="card">
+      <span class="eyebrow">Tap to zoom</span>
+      <h2 class="h-sign">Floor Plan</h2>
+      <button class="plan-btn" data-zoom="img/floor-plan.jpg" data-alt="Floor plan of the barn with room names"><img src="img/floor-plan.jpg" alt="The Pink Rodeo hen do floor plan, downstairs and upstairs" loading="lazy"></button>
+    </div>
+  </section>
+
+  <!-- ============ PUB ============ -->
+  <section class="panel" id="tab-pub" data-panel="pub" hidden>
+    <div class="card">
+      <span class="eyebrow">Friday night · 8:00 PM</span>
+      <h2 class="h-sign">Pub Dinner at The Queens</h2>
+      <p class="muted">The Queens (formerly The Queen's Arms), 12 Silver Street, Chew Magna. Pick your dinner below so Katie can send one order to the pub.</p>
+      <p class="note" id="pub-note" hidden></p>
+      <form id="pub-form" class="card plain" autocomplete="off">
+        <div class="field"><label class="lbl" for="pub-name">Your name</label><select id="pub-name" class="guest-select" required></select>
+          <input type="text" id="pub-name-other" placeholder="Type your name" hidden></div>
+        <fieldset id="pub-starters"><legend>Starter</legend><div class="choices"></div></fieldset>
+        <fieldset id="pub-mains"><legend>Main</legend><div class="choices"></div></fieldset>
+        <fieldset id="pub-desserts"><legend>Dessert</legend><div class="choices"></div></fieldset>
+        <div class="field"><label class="lbl" for="pub-notes">Anything the kitchen should know?</label><textarea id="pub-notes" placeholder="e.g. no onions, sauce on the side"></textarea></div>
+        <div class="row"><button class="btn" type="submit">Send my order</button><span class="status" id="pub-status" role="status"></span></div>
+        <div id="pub-fallback"></div>
+      </form>
+    </div>
+    <div class="card">
+      <div class="day-title"><h2 class="h-sign">Orders so far</h2><span class="muted" id="pub-count"></span></div>
+      <ul class="list" id="pub-list"></ul>
+      <div class="tally" id="pub-tally"></div>
+      <div class="row"><button class="btn sm ghost" type="button" id="pub-copy">Copy order for the pub</button></div>
+    </div>
+  </section>
+
+  <!-- ============ PLAYLIST ============ -->
+  <section class="panel" id="tab-playlist" data-panel="playlist" hidden>
+    <div class="card">
+      <span class="eyebrow">Karaoke &amp; Rodeo After Dark</span>
+      <h2 class="h-sign">Request a Song</h2>
+      <p class="muted">Country bangers, Barbie anthems, the one you'll grab the mic for. Add as many as you like.</p>
+      <form id="song-form" class="grid-2" autocomplete="off">
+        <div class="field"><label class="lbl" for="song-title">Song</label><input type="text" id="song-title" required placeholder="e.g. Man! I Feel Like a Woman!"></div>
+        <div class="field"><label class="lbl" for="song-artist">Artist</label><input type="text" id="song-artist" placeholder="e.g. Shania Twain"></div>
+        <div class="field"><label class="lbl" for="song-name">Requested by</label><select id="song-name" class="guest-select" required></select>
+          <input type="text" id="song-name-other" placeholder="Type your name" hidden></div>
+        <div class="field"><label class="lbl" for="song-karaoke">Karaoke?</label>
+          <select id="song-karaoke"><option value="">Just for the playlist</option><option value="yes">I'll be singing this one 🎤</option></select></div>
+        <div class="row" style="grid-column:1/-1"><button class="btn" type="submit">Add to playlist</button><span class="status" id="song-status" role="status"></span></div>
+        <div id="song-fallback" style="grid-column:1/-1"></div>
+      </form>
+    </div>
+    <div class="card">
+      <div class="day-title"><h2 class="h-sign">Requested</h2><span class="muted" id="song-count"></span></div>
+      <ul class="list" id="song-list"></ul>
+    </div>
+    <div class="card">
+      <span class="eyebrow">Already on the Rodeo Barbie playlist</span>
+      <ul class="list" id="starter-songs"></ul>
+      <a class="btn ghost" id="spotify-btn-2" href="#" target="_blank" rel="noopener">Open in Spotify</a>
+    </div>
+  </section>
+
+  <!-- ============ FOOD ============ -->
+  <section class="panel" id="tab-food" data-panel="food" hidden>
+    <div class="card">
+      <span class="eyebrow">Breakfasts, picky bits &amp; the Cow-Bite Buffet</span>
+      <h2 class="h-sign">Dietary Needs &amp; Food Requests</h2>
+      <p class="muted">Katie's doing the house food shop. Tell her what you can't eat and what you'd love to see.</p>
+      <form id="food-form" class="card plain" autocomplete="off">
+        <div class="field"><label class="lbl" for="food-name">Your name</label><select id="food-name" class="guest-select" required></select>
+          <input type="text" id="food-name-other" placeholder="Type your name" hidden></div>
+        <fieldset><legend>Dietary needs</legend><div class="chips" id="food-diets"></div></fieldset>
+        <div class="field"><label class="lbl" for="food-allergies">Allergies or intolerances</label><textarea id="food-allergies" placeholder="Please be specific, e.g. severe peanut allergy, carry an EpiPen"></textarea></div>
+        <div class="field"><label class="lbl" for="food-requests">Snack, drink &amp; breakfast requests</label><textarea id="food-requests" placeholder="e.g. oat milk, pink gin, Percy Pigs, pain au chocolat"></textarea></div>
+        <div class="row"><button class="btn" type="submit">Save my food info</button><span class="status" id="food-status" role="status"></span></div>
+        <div id="food-fallback"></div>
+      </form>
+    </div>
+    <div class="card">
+      <div class="day-title"><h2 class="h-sign">Kitchen Notes</h2><span class="muted" id="food-count"></span></div>
+      <ul class="list" id="food-list"></ul>
+    </div>
+  </section>
+
+  <!-- ============ PHOTOS ============ -->
+  <section class="panel" id="tab-photos" data-panel="photos" hidden>
+    <div class="card">
+      <span class="eyebrow">During &amp; after the weekend</span>
+      <h2 class="h-sign">Drop Your Photos</h2>
+      <p class="muted" id="album-text">Katie will add the shared album link here before the weekend.</p>
+      <div class="row">
+        <a class="btn" id="album-btn" href="#" target="_blank" rel="noopener" hidden>Open the shared album</a>
+        <button class="btn ghost" type="button" id="qr-btn" hidden>Show QR code</button>
+      </div>
+      <div class="qr" id="qr" hidden></div>
+    </div>
+    <div class="card" id="upload-card" hidden>
+      <span class="eyebrow">Upload straight here</span>
+      <div class="field"><label class="lbl" for="photo-name">Your name</label><select id="photo-name" class="guest-select"></select>
+        <input type="text" id="photo-name-other" placeholder="Type your name" hidden></div>
+      <div class="row">
+        <label class="btn" for="photo-input" style="cursor:pointer">Choose photos</label>
+        <input type="file" id="photo-input" accept="image/jpeg,image/png,image/webp,image/gif" multiple hidden>
+        <span class="status" id="photo-status" role="status"></span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="day-title"><h2 class="h-sign">The Rodeo Reel</h2><span class="muted" id="photo-count"></span></div>
+      <div class="gallery" id="gallery"></div>
+    </div>
+  </section>
+
+  <!-- ============ BRING ============ -->
+  <section class="panel" id="tab-bring" data-panel="bring" hidden>
+    <div class="card">
+      <span class="eyebrow">Pack your saddlebag</span>
+      <h2 class="h-sign">What to Bring</h2>
+      <p class="note">Cowgirl hats are provided by us! 🤠 You'll get yours on arrival.</p>
+      <div class="progress" aria-hidden="true"><i id="bring-bar"></i></div>
+      <p class="muted" id="bring-count"></p>
+      <div class="choices" id="bring-list"></div>
+      <p class="muted small">Your ticks are saved on this phone only.</p>
+    </div>
+  </section>
+
+  <!-- ============ VENUE ============ -->
+  <section class="panel" id="tab-venue" data-panel="venue" hidden>
+    <div class="card">
+      <span class="eyebrow">The Venue</span>
+      <h2 class="h-sign">Oak Barn</h2>
+      <div class="kv">
+        <div><span class="k">Address</span><span class="v copyable"><span id="addr">Oak Barn, Old North Chew Farm, Norton Lane, Chew Magna, Somerset, BS40 8RW</span><button class="copy-btn" data-copy="#addr" type="button">Copy</button></span></div>
+        <div><span class="k">Phone</span><span class="v copyable"><span>01275 331 601</span><button class="copy-btn" data-copy-text="01275331601" type="button">Copy</button></span><span class="v copyable"><span>07833 548 167</span><button class="copy-btn" data-copy-text="07833548167" type="button">Copy</button></span></div>
+        <div><span class="k">Website</span><a class="v" href="https://www.oakbarnholiday.com" target="_blank" rel="noopener">oakbarnholiday.com</a></div>
+      </div>
+      <div class="row">
+        <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Oak+Barn+Old+North+Chew+Farm+Norton+Lane+Chew+Magna+BS40+8RW" target="_blank" rel="noopener">Open in Google Maps</a>
+        <a class="btn alt" href="https://www.google.com/maps/dir/?api=1&destination=BS40+8RW" target="_blank" rel="noopener">Directions from me</a>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <span class="eyebrow">Driving &amp; parking</span>
+        <p>Free on-site courtyard parking at the barn. Postcode for the sat nav: <b>BS40 8RW</b>.</p>
+      </div>
+      <div class="card">
+        <span class="eyebrow">By train</span>
+        <p>Nearest major station is <b>Bristol Temple Meads</b>, about 20–25 minutes by taxi. Book a cab ahead for Friday evening, as they get busy.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="eyebrow">Local taxis</span>
+      <ul class="taxis" id="taxis"></ul>
+      <p class="muted small">Numbers come from online listings. Ring to check before you rely on one.</p>
+    </div>
+
+    <div class="card">
+      <span class="eyebrow">Check-in info</span>
+      <div class="kv">
+        <div><span class="k">Arrive</span><span class="v">From 6:00 PM, Friday 22nd January</span></div>
+        <div><span class="k">Wi-Fi network</span><span class="v copyable"><span id="wifi-name">Katie will add this closer to the time</span></span></div>
+        <div><span class="k">Wi-Fi password</span><span class="v copyable"><span id="wifi-pass">Katie will add this closer to the time</span><button class="copy-btn" data-copy="#wifi-pass" type="button" id="wifi-copy" hidden>Copy</button></span></div>
+        <div><span class="k">Entry / key code</span><span class="v" id="keycode">Katie will add this closer to the time</span></div>
+        <div id="checkin-notes-wrap" hidden><span class="k">Notes</span><span class="v" id="checkin-notes" style="white-space:pre-line"></span></div>
+        <div><span class="k">Check-out</span><span class="v">By 10:00 AM, Sunday 24th January</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="eyebrow">Walk to the village · about 8 minutes</span>
+      <p>Head out along Norton Lane towards Chew Magna village centre. The Queens is on Silver Street in the middle of the village, with other pubs and cafés close by. Take a torch or phone light for the walk back on Friday night, as the lanes are dark.</p>
+      <div class="row">
+        <a class="btn alt" href="https://www.google.com/maps/dir/?api=1&origin=Oak+Barn+Norton+Lane+Chew+Magna+BS40+8RW&destination=The+Queens+12+Silver+Street+Chew+Magna+BS40+8RQ&travelmode=walking" target="_blank" rel="noopener">Walking route to The Queens</a>
+      </div>
+      <div class="kv">
+        <div><span class="k">The Queens</span><span class="v copyable"><span>12 Silver Street, Chew Magna, BS40 8RQ · 01275 627 647</span><button class="copy-btn" data-copy-text="01275627647" type="button">Copy</button></span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span class="script">Yeehaw!</span>
+  <span>Made with love for Vic by Katie &amp; the girls</span>
+  <button class="btn sm ghost" type="button" id="org-btn" hidden>Organiser settings</button>
+</footer>
+
+<div class="lightbox" id="lightbox" hidden>
+  <button class="btn sm ghost close" type="button" id="lb-close">Close</button>
+  <img id="lb-img" alt="">
+</div>
+<div class="toast" id="toast" hidden role="status"></div>
+
+<div class="sheet" id="sheet" hidden>
+  <form class="sheet-body" id="org-form" autocomplete="off">
+    <div class="day-title"><h2 class="h-sign">Organiser Settings</h2><button class="btn sm ghost" type="button" id="org-close">Close</button></div>
+    <p class="muted">Everything here updates the app for every guest. Leave a box empty to keep the default text.</p>
+    <div class="grid-2">
+      <div class="field"><label class="lbl" for="c-groupChatUrl">Group chat link</label><input type="url" id="c-groupChatUrl" placeholder="https://chat.whatsapp.com/…"></div>
+      <div class="field"><label class="lbl" for="c-spotifyUrl">Spotify playlist link</label><input type="url" id="c-spotifyUrl" placeholder="https://open.spotify.com/playlist/…"></div>
+      <div class="field"><label class="lbl" for="c-albumUrl">Shared photo album link</label><input type="url" id="c-albumUrl" placeholder="Google Photos / Drive link"></div>
+      <div class="field"><label class="lbl" for="c-activity">Saturday afternoon activity</label><input type="text" id="c-activity" placeholder="e.g. Pottery painting"></div>
+      <div class="field"><label class="lbl" for="c-wifiName">Wi-Fi network</label><input type="text" id="c-wifiName"></div>
+      <div class="field"><label class="lbl" for="c-wifiPass">Wi-Fi password</label><input type="text" id="c-wifiPass"></div>
+      <div class="field"><label class="lbl" for="c-keycode">Entry / key code</label><input type="text" id="c-keycode"></div>
+      <div class="field"><label class="lbl" for="c-preorderDeadline">Pub order deadline</label><input type="text" id="c-preorderDeadline" placeholder="e.g. Friday 8th January"></div>
+    </div>
+    <div class="field"><label class="lbl" for="c-checkin">Check-in notes</label><textarea id="c-checkin"></textarea></div>
+    <div class="field"><label class="lbl" for="c-menuNote">Pub menu note</label><input type="text" id="c-menuNote"></div>
+    <div class="grid-2">
+      <div class="field"><label class="lbl" for="c-starters">Starters (one per line)</label><textarea id="c-starters" rows="6"></textarea></div>
+      <div class="field"><label class="lbl" for="c-mains">Mains (one per line)</label><textarea id="c-mains" rows="6"></textarea></div>
+      <div class="field"><label class="lbl" for="c-desserts">Desserts (one per line)</label><textarea id="c-desserts" rows="6"></textarea></div>
+      <div class="field"><label class="lbl" for="c-taxis">Taxis (Name | number, one per line)</label><textarea id="c-taxis" rows="6"></textarea></div>
+    </div>
+    <div class="row"><button class="btn" type="submit">Save for everyone</button><span class="status" id="org-status" role="status"></span></div>
+  </form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+(() => {
+  "use strict";
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem("vlr:" + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+    set(k, v) { try { localStorage.setItem("vlr:" + k, JSON.stringify(v)); } catch {} }
+  };
+
+  // ---------- Data ----------
+  const ROOMS = [
+    { name: "Barbie Suite", guests: ["Vic", "Emma", "Shania", "Becs"], tag: "Come on Barbie, let's go party", floor: "Downstairs", img: "img/room-barbie-suite.jpg" },
+    { name: "Rhinestone Ranch", guests: ["Amy", "Katie", "Hannah"], tag: "Where the sparkle never stops", floor: "Downstairs", img: "img/room-rhinestone-ranch.jpg" },
+    { name: "Pink Saloon", guests: ["Emily", "Lisa"], tag: "Saddle up for shots and sass", floor: "Downstairs", img: "img/room-pink-saloon.jpg" },
+    { name: "Cowgirl Cabana", guests: ["Mia", "Deb"], tag: "Boots off, disco on", floor: "Upstairs", img: "img/room-cowgirl-cabana.jpg" },
+    { name: "Yeehaw Hideaway", guests: ["Millie", "Kate"], tag: "A little bit of country, a whole lot of pink", floor: "Upstairs", img: "img/room-yeehaw-hideaway.jpg" }
+  ];
+  const GUESTS = ROOMS.flatMap(r => r.guests).sort((a, b) => a.localeCompare(b));
+
+  const DEFAULTS = {
+    groupChatUrl: "", spotifyUrl: "", albumUrl: "",
+    activity: "Afternoon activity (to be revealed)",
+    wifiName: "", wifiPass: "", keycode: "", checkin: "", preorderDeadline: "",
+    menuNote: "These are example dishes for now. Katie will swap in the real menu from The Queens.",
+    starters: "Soup of the day, sourdough\nSalt & pepper squid, garlic aioli\nWhipped goat's cheese, beetroot, walnuts (v)\nGarlic & rosemary flatbread to share (v)",
+    mains: "Beer-battered fish & chips, mushy peas\nThe Queens beef burger, cheddar, fries\nChicken, leek & ham pie, mash, greens\nWild mushroom risotto, parmesan (v)\nSirloin steak, peppercorn sauce, chips",
+    desserts: "Sticky toffee pudding, clotted cream\nChocolate brownie, vanilla ice cream\nWest Country cheese board\nSorbet selection (vg)",
+    taxis: "Chew Cars | 01761 462336\nV Cars (Bath) | 01225 464646\nBristol Taxis | 0333 414 9292\nAA Taxis Bristol | 0117 955 5000"
+  };
+  let config = { ...DEFAULTS };
+  const cfg = k => (config[k] && String(config[k]).trim()) || DEFAULTS[k];
+  const lines = k => cfg(k).split("\n").map(s => s.trim()).filter(Boolean);
+
+  const DAYS = [
+    { key: "fri", short: "FRI", date: "22 Jan", name: "Friday · Night 1", sub: "Arrivals & pub dinner", events: [
+      { t: "18:00", label: "6:00 PM", what: "Guest arrival & check-in" },
+      { t: "18:30", label: "6:30 PM", what: "Welcome drinks, name tags & itinerary handouts", detail: "Cowgirl hats provided on arrival! 🤠", pill: "Hats on" },
+      { t: "20:00", label: "8:00 PM", what: "Pub dinner at The Queens", detail: "Pre-ordered meals. Get your order in on the Pub Pre-Order tab.", pill: "Pre-order", link: "pub" },
+      { t: "22:30", label: "Late", what: "Back to Oak Barn", detail: "Unwind, lounge in PJs and mingle." }
+    ]},
+    { key: "sat", short: "SAT", date: "23 Jan", name: "Saturday · Main Rodeo", sub: "The big day", events: [
+      { t: "10:00", label: "10:00 AM", what: "Ultimate breakfast spread", detail: "PJs and loungewear encouraged." },
+      { t: "13:00", label: "1:00 PM", what: "@activity", detail: "Plus a special surprise for Vic! 🤫✨", pill: "Surprise" },
+      { t: "15:30", label: "3:30 PM", what: "Picky bits & snacks" },
+      { t: "17:00", label: "5:00 PM", what: "Get dressed up & cocktail class", detail: "Full pink / Country Barbie rodeo glam!", pill: "Glam" },
+      { t: "18:30", label: "6:30 PM", what: "The Cowgirl's Cow-Bite Buffet 🍕💗", detail: "Pink-themed party food & pizza feast." },
+      { t: "20:00", label: "8:00 PM →", what: "Rodeo After Dark", detail: "Karaoke & hen games! 🎤🤠 Add your karaoke song on the Playlist tab.", link: "playlist" }
+    ]},
+    { key: "sun", short: "SUN", date: "24 Jan", name: "Sunday · Last Call", sub: "Check-out by 10 AM", events: [
+      { t: "08:30", label: "8:30 AM", what: "Morning breakfast & coffee" },
+      { t: "10:00", label: "10:00 AM", what: "Pack up & departure", detail: "Check-out by 10 AM.", pill: "Check-out" }
+    ]}
+  ];
+  const DAY_DATE = { fri: "2027-01-22", sat: "2027-01-23", sun: "2027-01-24" };
+  const START = new Date("2027-01-22T18:00:00Z"); // January in the UK is GMT
+
+  const STARTER_SONGS = [
+    ["Man! I Feel Like a Woman!", "Shania Twain"], ["Barbie Girl", "Aqua"], ["9 to 5", "Dolly Parton"],
+    ["Jolene", "Dolly Parton"], ["Before He Cheats", "Carrie Underwood"], ["Texas Hold 'Em", "Beyoncé"],
+    ["Pink Pony Club", "Chappell Roan"], ["Boot Scootin' Boogie", "Brooks & Dunn"], ["Islands in the Stream", "Kenny Rogers & Dolly Parton"],
+    ["Cotton Eye Joe", "Rednex"], ["Last Night", "Morgan Wallen"], ["Any Man of Mine", "Shania Twain"]
+  ];
+  const DIETS = ["Vegetarian", "Vegan", "Pescatarian", "Gluten-free", "Dairy-free", "Nut allergy", "Halal", "No restrictions"];
+  const BRING = [
+    "Pink / Barbie Rodeo outfit for Saturday night",
+    "Cosy PJs / loungewear for Friday night & Saturday morning",
+    "Swimwear",
+    "Toiletries",
+    "Cowboy boots",
+    "Glam accessories (sparkle, bandanas, jewellery)",
+    "Phone charger",
+    "Torch or phone light for the walk back from the pub",
+    "Any medication you need"
+  ];
+
+  // ---------- Small UI helpers ----------
+  let toastTimer;
+  function toast(msg) { const t = $("#toast"); t.textContent = msg; t.hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => (t.hidden = true), 2600); }
+  async function copyText(text) {
+    try { await navigator.clipboard.writeText(text); toast("Copied"); return true; }
+    catch { toast("Press and hold to copy"); return false; }
+  }
+  document.addEventListener("click", e => {
+    const b = e.target.closest(".copy-btn"); if (!b) return;
+    const text = b.dataset.copyText || $(b.dataset.copy)?.textContent || "";
+    copyText(text.trim());
+  });
+
+  // Lightbox
+  function zoom(src, alt) { $("#lb-img").src = src; $("#lb-img").alt = alt || ""; $("#lightbox").hidden = false; }
+  document.addEventListener("click", e => {
+    const z = e.target.closest("[data-zoom]"); if (z) zoom(z.dataset.zoom, z.dataset.alt);
+  });
+  $("#lightbox").addEventListener("click", e => { if (e.target.id !== "lb-img") $("#lightbox").hidden = true; });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") { $("#lightbox").hidden = true; $("#sheet").hidden = true; } });
+
+  // ---------- Tabs ----------
+  const TABS = $$(".tab").map(b => b.dataset.tab);
+  function showTab(name, focus) {
+    if (!TABS.includes(name)) name = "itinerary";
+    $$(".tab").forEach(b => b.setAttribute("aria-selected", String(b.dataset.tab === name)));
+    $$("[data-panel]").forEach(p => (p.hidden = p.dataset.panel !== name));
+    const active = $(`.tab[data-tab="${name}"]`);
+    active.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" });
+    try { history.replaceState(null, "", "#" + name); } catch {}
+    store.set("tab", name);
+    if (focus) window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+  $("#tabs").addEventListener("click", e => { const b = e.target.closest(".tab"); if (b) showTab(b.dataset.tab, true); });
+  document.addEventListener("click", e => { const l = e.target.closest("[data-go]"); if (l) { e.preventDefault(); showTab(l.dataset.go, true); } });
+
+  // ---------- Countdown ----------
+  function renderCountdown() {
+    const el = $("#countdown");
+    const ms = START - Date.now();
+    if (ms <= 0) { el.innerHTML = `<div style="padding:6px 14px"><b>Saddle up!</b><small>The rodeo is on</small></div>`; return; }
+    const d = Math.floor(ms / 864e5), h = Math.floor(ms / 36e5) % 24, m = Math.floor(ms / 6e4) % 60;
+    el.innerHTML = [[d, "days"], [h, "hours"], [m, "mins"]].map(([n, l]) => `<div><b>${n}</b><small>${l}</small></div>`).join("");
+  }
+
+  // ---------- Itinerary ----------
+  let currentDay = "fri";
+  function eventTimes() {
+    const all = [];
+    DAYS.forEach(d => d.events.forEach(ev => all.push({ day: d.key, ev, at: new Date(`${DAY_DATE[d.key]}T${ev.t}:00Z`) })));
+    return all;
+  }
+  function renderDays() {
+    $("#days").innerHTML = DAYS.map(d => `<button class="day-btn" role="tab" data-day="${d.key}" aria-selected="${d.key === currentDay}"><b>${d.short}</b><span>${d.date}</span></button>`).join("");
+    const day = DAYS.find(d => d.key === currentDay);
+    $("#day-name").textContent = day.name;
+    $("#day-sub").textContent = day.sub;
+    const now = Date.now();
+    const all = eventTimes();
+    const nextIdx = all.findIndex(x => x.at > now);
+    const nowItem = nextIdx > 0 ? all[nextIdx - 1] : (nextIdx === -1 ? null : null);
+    $("#timeline").innerHTML = day.events.map(ev => {
+      const item = all.find(x => x.ev === ev);
+      let cls = "", pill = ev.pill ? `<span class="pill ${ev.pill === "Surprise" ? "coral" : ev.pill === "Check-out" ? "tan" : ""}">${esc(ev.pill)}</span>` : "";
+      if (now >= START.getTime()) {
+        if (item === nowItem) { cls = "now"; pill = `<span class="pill">Happening now</span>`; }
+        else if (item.at < now) cls = "past";
+      }
+      const what = ev.what === "@activity" ? cfg("activity") : ev.what;
+      const link = ev.link ? ` <a href="#${ev.link}" data-go="${ev.link}">Go there →</a>` : "";
+      return `<li class="ev ${cls}"><span class="t">${esc(ev.label)}</span><div class="body"><span class="what">${esc(what)} ${pill}</span>${ev.detail || link ? `<span class="detail">${esc(ev.detail || "")}${link}</span>` : ""}</div></li>`;
+    }).join("");
+  }
+  $("#days").addEventListener("click", e => { const b = e.target.closest(".day-btn"); if (b) { currentDay = b.dataset.day; renderDays(); } });
+  (function pickDay() {
+    const now = new Date();
+    const iso = now.toISOString().slice(0, 10);
+    const hit = Object.entries(DAY_DATE).find(([, d]) => d === iso);
+    if (hit) currentDay = hit[0];
+  })();
+
+  // ---------- Rooms ----------
+  function renderRooms() {
+    const me = store.get("me", "");
+    $("#rooms").innerHTML = ROOMS.map(r => `
+      <article class="room ${r.guests.includes(me) ? "me" : ""}">
+        <button class="sign" type="button" data-zoom="${r.img}" data-alt="${esc(r.name)} door sign"><img src="${r.img}" alt="${esc(r.name)} door sign: ${esc(r.guests.join(", "))}" loading="lazy"></button>
+        <div class="info">
+          <span class="eyebrow" style="font-size:14px">${r.floor}</span>
+          <h3 class="rn">${esc(r.name)}</h3>
+          <span class="who">${esc(r.guests.join(" · "))}</span>
+          <span class="tag">“${esc(r.tag)}”</span>
+        </div>
+      </article>`).join("");
+  }
+  $("#find-me").addEventListener("change", e => {
+    const name = e.target.value; setMe(name);
+    renderRooms();
+    const room = ROOMS.find(r => r.guests.includes(name));
+    if (room) { toast(`${name}, you're in the ${room.name} (${room.floor.toLowerCase()})`); $(".room.me")?.scrollIntoView({ behavior: "smooth", block: "center" }); }
+  });
+
+  // ---------- Guest pickers ----------
+  function setMe(name) { if (name && name !== "__other") store.set("me", name); $$(".guest-select, #find-me").forEach(s => { if (!s.value || s.value === "") s.value = name; }); }
+  function fillGuestSelects() {
+    const me = store.get("me", "");
+    const opts = `<option value="">Choose your name…</option>` + GUESTS.map(g => `<option>${esc(g)}</option>`).join("") + `<option value="__other">Someone else</option>`;
+    $$(".guest-select").forEach(s => {
+      s.innerHTML = opts; s.value = me;
+      const other = $("#" + s.id + "-other");
+      s.addEventListener("change", () => { other.hidden = s.value !== "__other"; if (s.value !== "__other") setMe(s.value); });
+    });
+    $("#find-me").innerHTML = `<option value="">Choose your name…</option>` + GUESTS.map(g => `<option>${esc(g)}</option>`).join("");
+    $("#find-me").value = me;
+  }
+  function guestName(selId) {
+    const s = $("#" + selId);
+    if (s.value === "__other") return $("#" + selId + "-other").value.trim();
+    return s.value;
+  }
+  const slug = n => n.toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60) || "guest";
+
+  // ---------- Shared storage (db) ----------
+  let db = null, assets = null, user = null, writable = true;
+  const data = { preorders: [], songs: [], dietary: [], photos: [] };
+
+  function status(id, msg, kind) { const el = $("#" + id); el.textContent = msg; el.className = "status " + (kind || ""); }
+  function showFallback(boxId, text) {
+    const box = $("#" + boxId);
+    box.innerHTML = `<div class="fallback"><b>This phone can't save to the shared list.</b><span class="muted small">Copy your answers and paste them into the group chat for Katie instead.</span><textarea readonly>${esc(text)}</textarea><div class="row"><button class="btn sm" type="button">Copy my answers</button></div></div>`;
+    const ta = $("textarea", box);
+    $("button", box).addEventListener("click", async () => { if (!(await copyText(text))) { ta.focus(); ta.select(); } });
+  }
+  // Writes to the shared db when this viewer can; otherwise offers the copy-to-group-chat fallback.
+  async function saveDoc(path, body, { statusId, fallbackId, fallbackText, okMsg }) {
+    $("#" + fallbackId) && ($("#" + fallbackId).innerHTML = "");
+    if (db && writable) {
+      status(statusId, "Saving…");
+      try {
+        await (path.includes("/") ? db.doc(path).set(body) : db.collection(path).add(body));
+        status(statusId, okMsg || "Saved! Thank you 💖", "ok");
+        return true;
+      } catch (e) {
+        if (e && e.code === "unavailable") {
+          await new Promise(r => setTimeout(r, 600 + Math.random() * 600));
+          try { await (path.includes("/") ? db.doc(path).set(body) : db.collection(path).add(body)); status(statusId, okMsg || "Saved! Thank you 💖", "ok"); return true; } catch {}
+        }
+        if (e && e.code === "invalid_argument") writable = false;
+        if (e && e.code === "quota_exceeded") { status(statusId, "The shared list is full. Copy your answers below instead.", "err"); }
+      }
+    }
+    status(statusId, "");
+    showFallback(fallbackId, fallbackText);
+    return false;
+  }
+
+  // ---------- Pub pre-order ----------
+  function renderMenu() {
+    const keep = {};
+    ["starters", "mains", "desserts"].forEach(k => { keep[k] = $(`input[name="pub-${k}"]:checked`)?.value; });
+    const course = (k, noneLabel) => {
+      const items = lines(k);
+      if (noneLabel) items.push(noneLabel);
+      $(`#pub-${k} .choices`).innerHTML = items.map((it, i) => `<label class="choice"><input type="radio" name="pub-${k}" value="${esc(it)}" ${keep[k] === it ? "checked" : ""} ${k === "mains" && i === 0 ? "required" : ""}><span>${esc(it)}</span></label>`).join("");
+    };
+    course("starters", "No starter for me");
+    course("mains");
+    course("desserts", "No dessert for me");
+    const note = $("#pub-note");
+    const parts = [cfg("menuNote")];
+    if (cfg("preorderDeadline")) parts.push(`Please order by ${cfg("preorderDeadline")}.`);
+    note.textContent = parts.join(" "); note.hidden = false;
+  }
+  function loadMyOrder() {
+    const name = guestName("pub-name"); if (!name) return;
+    const mine = data.preorders.find(o => o.id === slug(name));
+    if (!mine) return;
+    ["starter", "main", "dessert"].forEach(c => {
+      const k = c + "s"; const inp = $$(`input[name="pub-${k}"]`).find(i => i.value === mine[c]); if (inp) inp.checked = true;
+    });
+    if (mine.notes && !$("#pub-notes").value) $("#pub-notes").value = mine.notes;
+  }
+  $("#pub-name").addEventListener("change", loadMyOrder);
+  $("#pub-form").addEventListener("submit", async e => {
+    e.preventDefault();
+    const name = guestName("pub-name");
+    if (!name) { status("pub-status", "Pick your name first", "err"); return; }
+    const pick = k => $(`input[name="pub-${k}"]:checked`)?.value || "";
+    const body = { guest: name, starter: pick("starters"), main: pick("mains"), dessert: pick("desserts"), notes: $("#pub-notes").value.trim(), updatedAt: new Date().toISOString() };
+    if (!body.main) { status("pub-status", "Choose a main", "err"); return; }
+    const text = `🤠 Pub order – ${name}\nStarter: ${body.starter || "-"}\nMain: ${body.main}\nDessert: ${body.dessert || "-"}${body.notes ? "\nNotes: " + body.notes : ""}`;
+    await saveDoc("preorders/" + slug(name), body, { statusId: "pub-status", fallbackId: "pub-fallback", fallbackText: text, okMsg: "Order saved! You can change it any time." });
+  });
+  function pubSummaryText() {
+    const rows = data.preorders.slice().sort((a, b) => a.guest.localeCompare(b.guest));
+    const count = field => rows.reduce((m, o) => { const v = o[field]; if (v && !/^No /.test(v)) m[v] = (m[v] || 0) + 1; return m; }, {});
+    let out = `Vic's hen party – Friday 22nd Jan, 8pm – ${rows.length} people\n\n`;
+    [["STARTERS", "starter"], ["MAINS", "main"], ["DESSERTS", "dessert"]].forEach(([h, f]) => {
+      const c = count(f); out += h + "\n" + (Object.entries(c).map(([k, n]) => `${n} x ${k}`).join("\n") || "none") + "\n\n";
+    });
+    out += "BY NAME\n" + rows.map(o => `${o.guest}: ${[o.starter, o.main, o.dessert].filter(v => v && !/^No /.test(v)).join(" / ")}${o.notes ? " (" + o.notes + ")" : ""}`).join("\n");
+    return out;
+  }
+  function renderPubList() {
+    const rows = data.preorders.slice().sort((a, b) => a.guest.localeCompare(b.guest));
+    $("#pub-count").textContent = `${rows.length} of ${GUESTS.length} in`;
+    const waiting = GUESTS.filter(g => !rows.some(o => o.id === slug(g)));
+    $("#pub-list").innerHTML = rows.length
+      ? rows.map(o => `<li><span class="who">${esc(o.guest)}</span><span>${esc([o.starter, o.main, o.dessert].filter(v => v && !/^No /.test(v)).join(" · "))}</span>${o.notes ? `<span class="meta">${esc(o.notes)}</span>` : ""}</li>`).join("")
+        + (waiting.length ? `<li><span class="meta">Still to order: ${esc(waiting.join(", "))}</span></li>` : "")
+      : `<li class="empty">No orders yet. Be the first to pick!</li>`;
+    if (!rows.length) { $("#pub-tally").innerHTML = ""; return; }
+    const tallies = [["Starter", "starter"], ["Main", "main"], ["Dessert", "dessert"]].map(([h, f]) => {
+      const m = {}; rows.forEach(o => { const v = o[f]; if (v && !/^No /.test(v)) m[v] = (m[v] || 0) + 1; });
+      return Object.entries(m).sort((a, b) => b[1] - a[1]).map(([k, n], i) => `<tr><th>${i === 0 ? h : ""}</th><td>${esc(k)}</td><td class="num">${n}</td></tr>`).join("");
+    }).join("");
+    $("#pub-tally").innerHTML = `<table><tbody>${tallies}</tbody></table>`;
+  }
+  $("#pub-copy").addEventListener("click", () => {
+    if (!data.preorders.length) { toast("No orders to copy yet"); return; }
+    copyText(pubSummaryText());
+  });
+
+  // ---------- Playlist ----------
+  function renderSongs() {
+    $("#starter-songs").innerHTML = STARTER_SONGS.map(([s, a], i) => `<li class="song"><span class="n">${i + 1}</span><span><b>${esc(s)}</b> <span class="meta">${esc(a)}</span></span></li>`).join("");
+    const rows = data.songs.slice().sort((a, b) => String(b.at).localeCompare(String(a.at)));
+    $("#song-count").textContent = rows.length ? `${rows.length} request${rows.length === 1 ? "" : "s"}` : "";
+    $("#song-list").innerHTML = rows.length ? rows.map(s => `<li><span><b>${esc(s.song)}</b>${s.artist ? ` <span class="meta">· ${esc(s.artist)}</span>` : ""}${s.karaoke ? ` <span class="pill coral">Karaoke</span>` : ""}</span><span class="meta">Requested by ${esc(s.by)}</span>${isEditor ? `<button class="x" data-del-song="${esc(s.id)}" type="button">Remove</button>` : ""}</li>`).join("")
+      : `<li class="empty">No requests yet. What gets you on the table?</li>`;
+  }
+  $("#song-form").addEventListener("submit", async e => {
+    e.preventDefault();
+    const name = guestName("song-name");
+    const song = $("#song-title").value.trim();
+    if (!name) { status("song-status", "Pick your name first", "err"); return; }
+    if (!song) { status("song-status", "Add a song title", "err"); return; }
+    const body = { song, artist: $("#song-artist").value.trim(), by: name, karaoke: $("#song-karaoke").value === "yes", at: new Date().toISOString() };
+    const ok = await saveDoc("songs", body, { statusId: "song-status", fallbackId: "song-fallback", fallbackText: `🎶 Song request from ${name}: ${song}${body.artist ? " – " + body.artist : ""}${body.karaoke ? " (karaoke!)" : ""}`, okMsg: "Added! Yeehaw 🎶" });
+    if (ok) { $("#song-title").value = ""; $("#song-artist").value = ""; $("#song-karaoke").value = ""; }
+  });
+  $("#song-list").addEventListener("click", async e => {
+    const b = e.target.closest("[data-del-song]"); if (!b || !db) return;
+    if (b.dataset.armed !== "1") { b.dataset.armed = "1"; b.textContent = "Tap again to remove"; return; }
+    try { await db.doc("songs/" + b.dataset.delSong).delete(); toast("Removed"); } catch { toast("Couldn't remove that one"); }
+  });
+
+  // ---------- Dietary ----------
+  $("#food-diets").innerHTML = DIETS.map((d, i) => `<label class="choice"><input type="checkbox" value="${esc(d)}" id="diet-${i}"><span>${esc(d)}</span></label>`).join("");
+  function loadMyFood() {
+    const name = guestName("food-name"); if (!name) return;
+    const mine = data.dietary.find(o => o.id === slug(name)); if (!mine) return;
+    $$("#food-diets input").forEach(i => (i.checked = (mine.needs || []).includes(i.value)));
+    if (!$("#food-allergies").value) $("#food-allergies").value = mine.allergies || "";
+    if (!$("#food-requests").value) $("#food-requests").value = mine.requests || "";
+  }
+  $("#food-name").addEventListener("change", loadMyFood);
+  $("#food-form").addEventListener("submit", async e => {
+    e.preventDefault();
+    const name = guestName("food-name");
+    if (!name) { status("food-status", "Pick your name first", "err"); return; }
+    const needs = $$("#food-diets input:checked").map(i => i.value);
+    const body = { guest: name, needs, allergies: $("#food-allergies").value.trim(), requests: $("#food-requests").value.trim(), updatedAt: new Date().toISOString() };
+    const text = `🍕 Food info – ${name}\nDiet: ${needs.join(", ") || "-"}\nAllergies: ${body.allergies || "-"}\nRequests: ${body.requests || "-"}`;
+    await saveDoc("dietary/" + slug(name), body, { statusId: "food-status", fallbackId: "food-fallback", fallbackText: text, okMsg: "Saved! Katie's got you covered." });
+  });
+  function renderFood() {
+    const rows = data.dietary.slice().sort((a, b) => a.guest.localeCompare(b.guest));
+    $("#food-count").textContent = rows.length ? `${rows.length} replied` : "";
+    const allergyFirst = rows.filter(r => r.allergies).concat(rows.filter(r => !r.allergies));
+    $("#food-list").innerHTML = rows.length ? allergyFirst.map(r => `<li><span class="who">${esc(r.guest)} ${r.allergies ? `<span class="pill">Allergy</span>` : ""}</span>${(r.needs || []).length ? `<span>${esc(r.needs.join(" · "))}</span>` : ""}${r.allergies ? `<span><b>Allergies:</b> ${esc(r.allergies)}</span>` : ""}${r.requests ? `<span class="meta">Requests: ${esc(r.requests)}</span>` : ""}</li>`).join("")
+      : `<li class="empty">Nothing yet. Add yours above.</li>`;
+  }
+
+  // ---------- Photos ----------
+  let qrDrawn = "";
+  function renderAlbum() {
+    const url = config.albumUrl;
+    $("#album-btn").hidden = !url; $("#qr-btn").hidden = !url;
+    if (url) { $("#album-btn").href = url; $("#album-text").textContent = "Add your pics to the shared album. Show the QR code to anyone who wants to join."; }
+    else { $("#album-text").textContent = "Katie will add the shared album link here before the weekend."; $("#qr").hidden = true; }
+  }
+  $("#qr-btn").addEventListener("click", () => {
+    const box = $("#qr"); const url = config.albumUrl;
+    if (!url) return;
+    if (qrDrawn !== url) {
+      box.innerHTML = "";
+      if (window.QRCode) { new QRCode(box, { text: url, width: 180, height: 180, colorDark: "#4A1030", colorLight: "#FFF8E7" }); qrDrawn = url; }
+      else box.textContent = url;
+    }
+    box.hidden = !box.hidden;
+    $("#qr-btn").textContent = box.hidden ? "Show QR code" : "Hide QR code";
+  });
+  function renderGallery() {
+    const rows = data.photos.slice().sort((a, b) => String(b.at).localeCompare(String(a.at)));
+    $("#photo-count").textContent = rows.length ? `${rows.length} photo${rows.length === 1 ? "" : "s"}` : "";
+    $("#gallery").innerHTML = rows.length
+      ? rows.map(p => `<button type="button" data-zoom="/_blob/${esc(p.assetId)}" data-alt="Photo from ${esc(p.by)}"><img src="/_blob/${esc(p.assetId)}" alt="Photo from ${esc(p.by)}" loading="lazy" onerror="this.style.visibility='hidden'"></button>`).join("")
+      : `<p class="empty" style="grid-column:1/-1">No photos yet. They'll appear here once the rodeo starts.</p>`;
+  }
+  $("#photo-input").addEventListener("change", async e => {
+    const files = [...e.target.files]; e.target.value = "";
+    if (!files.length || !assets) return;
+    const name = guestName("photo-name") || "A cowgirl";
+    let done = 0, failed = 0;
+    for (const f of files) {
+      status("photo-status", `Uploading ${done + failed + 1} of ${files.length}…`);
+      try {
+        const res = await assets.upload(f);
+        await db.collection("photos").add({ assetId: res.id, by: name, at: new Date().toISOString() });
+        done++;
+      } catch (err) {
+        failed++;
+        if (err && err.code === "too_large") toast("That photo is over 20 MB");
+        if (err && err.code === "quota_or_state") { toast("Photo storage is full. Use the shared album."); break; }
+      }
+    }
+    status("photo-status", failed ? `${done} uploaded, ${failed} didn't go through` : `${done} uploaded 📸`, failed ? "err" : "ok");
+  });
+
+  // ---------- What to bring ----------
+  function renderBring() {
+    const ticked = store.get("bring", {});
+    $("#bring-list").innerHTML = BRING.map((b, i) => `<label class="choice"><input type="checkbox" id="bring-${i}" ${ticked[i] ? "checked" : ""}><span>${esc(b)}</span></label>`).join("");
+    updateBring();
+  }
+  function updateBring() {
+    const boxes = $$("#bring-list input"); const n = boxes.filter(b => b.checked).length;
+    $("#bring-bar").style.width = (n / boxes.length * 100) + "%";
+    $("#bring-count").textContent = n === boxes.length ? "All packed. Giddy up! 🤠" : `${n} of ${boxes.length} packed`;
+  }
+  $("#bring-list").addEventListener("change", () => {
+    const t = {}; $$("#bring-list input").forEach((b, i) => { if (b.checked) t[i] = 1; }); store.set("bring", t); updateBring();
+  });
+
+  // ---------- Venue / links ----------
+  function renderLinks() {
+    const chat = $("#chat-btn");
+    if (config.groupChatUrl) { chat.href = config.groupChatUrl; chat.removeAttribute("data-nolink"); }
+    else { chat.href = "#"; chat.dataset.nolink = "Katie will add the group chat link soon"; }
+    const sp = config.spotifyUrl || "https://open.spotify.com/search/country%20barbie%20rodeo/playlists";
+    $("#spotify-btn").href = sp; $("#spotify-btn-2").href = sp;
+    $("#taxis").innerHTML = lines("taxis").map(l => { const [n, num] = l.split("|").map(s => s.trim()); return `<li><b>${esc(n)}</b><span class="copyable"><span>${esc(num || "")}</span>${num ? `<button class="copy-btn" type="button" data-copy-text="${esc(num.replace(/\s/g, ""))}">Copy</button>` : ""}</span></li>`; }).join("");
+    const later = "Katie will add this closer to the time";
+    $("#wifi-name").textContent = config.wifiName || later;
+    $("#wifi-pass").textContent = config.wifiPass || later;
+    $("#wifi-copy").hidden = !config.wifiPass;
+    $("#keycode").textContent = config.keycode || later;
+    $("#checkin-notes-wrap").hidden = !config.checkin;
+    $("#checkin-notes").textContent = config.checkin || "";
+  }
+  document.addEventListener("click", e => { const a = e.target.closest("[data-nolink]"); if (a) { e.preventDefault(); toast(a.dataset.nolink); } });
+
+  function renderConfigDependent() { renderLinks(); renderMenu(); renderDays(); renderAlbum(); loadMyOrder(); }
+
+  // ---------- Organiser ----------
+  let isEditor = false;
+  const CFG_KEYS = Object.keys(DEFAULTS);
+  $("#org-btn").addEventListener("click", () => {
+    CFG_KEYS.forEach(k => { const el = $("#c-" + k); if (el) el.value = config[k] || ""; });
+    ["starters", "mains", "desserts", "taxis", "menuNote", "activity"].forEach(k => { const el = $("#c-" + k); if (!config[k]) el.value = DEFAULTS[k]; });
+    status("org-status", "");
+    $("#sheet").hidden = false;
+  });
+  $("#org-close").addEventListener("click", () => ($("#sheet").hidden = true));
+  $("#sheet").addEventListener("click", e => { if (e.target.id === "sheet") $("#sheet").hidden = true; });
+  $("#org-form").addEventListener("submit", async e => {
+    e.preventDefault();
+    if (!db) return;
+    const body = {}; CFG_KEYS.forEach(k => { const el = $("#c-" + k); if (el) body[k] = el.value.trim(); });
+    status("org-status", "Saving…");
+    try { await db.doc("config/main").set(body); status("org-status", "Saved for everyone", "ok"); }
+    catch (err) { status("org-status", "Couldn't save. Only people who can edit this app can change settings.", "err"); }
+  });
+
+  // ---------- Boot ----------
+  fillGuestSelects();
+  renderRooms(); renderBring(); renderSongs(); renderFood(); renderPubList(); renderGallery();
+  renderConfigDependent();
+  renderCountdown(); setInterval(() => { renderCountdown(); }, 30000);
+  setInterval(() => { renderDays(); }, 5 * 60000);
+  const startTab = (location.hash || "").slice(1) || store.get("tab", "itinerary");
+  showTab(TABS.includes(startTab) ? startTab : "itinerary");
+
+  (async () => {
+    if (!window.claude || typeof window.claude.use !== "function") return;
+    try {
+      [db, user] = await Promise.all([claude.use("db"), claude.use("user")]);
+    } catch { db = null; }
+    if (user) {
+      isEditor = await user.canEdit().catch(() => false);
+      const can = await user.can("data.write").catch(() => null);
+      if (can === false) writable = false;
+      $("#org-btn").hidden = !isEditor || !db;
+    }
+    if (!db) return;
+    const onErr = () => {};
+    db.doc("config/main").onSnapshot(s => {
+      const saved = (s.exists && s.data()) || {};
+      config = { ...DEFAULTS };
+      CFG_KEYS.forEach(k => { if (typeof saved[k] === "string" && saved[k].trim()) config[k] = saved[k]; });
+      renderConfigDependent();
+    }, onErr);
+    const watch = (coll, key, render) => db.collection(coll).onSnapshot(snap => { data[key] = snap.docs.map(d => ({ id: d.id, ...d.data() })); render(); }, onErr);
+    watch("preorders", "preorders", () => { renderPubList(); loadMyOrder(); });
+    watch("songs", "songs", renderSongs);
+    watch("dietary", "dietary", () => { renderFood(); loadMyFood(); });
+    watch("photos", "photos", renderGallery);
+    try { assets = await claude.use("assets"); } catch { assets = null; }
+    $("#upload-card").hidden = !assets;
+  })();
+})();
+</script>
+
+</body></html>
